@@ -34,9 +34,12 @@ if(isset($_GET["insertar"])){
     $data = json_decode(file_get_contents("php://input"));
     $nombre=$data->nombre;
     $correo=$data->correo;
-        if(($correo!="")&&($nombre!="")){
+    $carrera=$data->carrera;
+    $genero=$data->genero;
+    $fecha=$data->fecha;
+        if(($correo!="")&&($nombre!="")&&($carrera!="")&&($genero!="")&&($fecha!="")){
             
-    $sqlEmpleaados = mysqli_query($conexionBD,"INSERT INTO empleados(nombre,correo) VALUES('$nombre','$correo') ");
+    $sqlEmpleaados = mysqli_query($conexionBD,"INSERT INTO empleados(nombre,correo,carrera,genero,fecha) VALUES('$nombre','$correo','$carrera','$genero','$fecha' )");
     echo json_encode(["success"=>1]);
         }
     exit();
@@ -49,8 +52,11 @@ if(isset($_GET["actualizar"])){
     $id=(isset($data->id))?$data->id:$_GET["actualizar"];
     $nombre=$data->nombre;
     $correo=$data->correo;
+    $carrera=$data->carrera;
+    $genero=$data->genero;
+    $fecha=$data->fecha;
     
-    $sqlEmpleaados = mysqli_query($conexionBD,"UPDATE empleados SET nombre='$nombre',correo='$correo' WHERE id='$id'");
+    $sqlEmpleaados = mysqli_query($conexionBD,"UPDATE empleados SET nombre='$nombre',correo='$correo',carrera='$carrera',genero='$genero',fecha='$fecha' WHERE id='$id'");
     echo json_encode(["success"=>1]);
     exit();
 }

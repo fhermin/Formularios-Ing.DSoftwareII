@@ -7,6 +7,9 @@ class Crear extends React.Component {
         this.state= {
             nombre: "",
             correo: "",
+            carrera: "",
+            genero: "",
+            fecha:"",
             errores:[]
          }
     }
@@ -22,17 +25,23 @@ class Crear extends React.Component {
         enviarDatos = (e) =>{
             e.preventDefault();
             console.log("Formulario enviado...");
-            const{nombre,correo}=this.state;
+            const{nombre,correo,carrera,genero,fecha}=this.state;
             console.log(nombre);
             console.log(correo);
+            console.log(carrera);
+            console.log(genero);
+            console.log(fecha);
 
             var errores=[];
             if(!nombre)errores.push("error_nombre");
             if(!correo)errores.push("error_correo");
+            if(!carrera)errores.push("error_carrera");
+            if(!genero)errores.push("error_genero");
+            if(!fecha)errores.push("error_fecha");
 
             this.setState({errores:errores});
             if(errores.length>1)return false;
-            var datosEnviar={nombre:nombre,correo:correo}
+            var datosEnviar={nombre:nombre,correo:correo,carrera:carrera,genero:genero,fecha:fecha}
 
             fetch("http://localhost/empleados/?insertar=1",{
                     method: "POST",
@@ -47,7 +56,7 @@ class Crear extends React.Component {
         }
 
     render() {  
-        const{nombre,correo}=this.state;
+        const{nombre,correo,carrera,genero,fecha}=this.state;
         return ( <div className="card">
             <div className="card-header">
                 Formulario
@@ -65,16 +74,42 @@ class Crear extends React.Component {
                       <input type="email" className={ ((this.verificarError("error_correo"))?"is-invalid":"" )+" form-control" } name="correo" value={correo} onChange={this.CambioValor} id="correo" aria-describedby="emailHelpId" placeholder=""/>
                       <small id="emailHelpId" className="invalid-feedback">Ingrese un correo</small>
                     </div>
+                   
+                    <div class="form-group">
+                      <label for="">Carrera</label>
+                      <select class="form-control" name="carrera" id="carrera" value={carrera} onChange={this.CambioValor} className={ ((this.verificarError("error_carrera"))?"is-invalid":"" )+" form-control" }>
+                        <option >Selecciona una</option>
+                        <option >Pepe</option>
+                        <option>Mario</option>
+                        <option>Marioneta</option>
+                      </select>
+                      <small className="invalid-feedback">Ingrese un opcion</small>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="">Genero</label>
+                      <select class="form-control" name="genero" id="genero" value={genero} onChange={this.CambioValor} className={ ((this.verificarError("error_genero"))?"is-invalid":"" )+" form-control" }>
+                        <option >Selecciona una</option>
+                        <option >Hombre</option>
+                        <option>Mujer</option>
+                      </select>
+                      <small className="invalid-feedback">Ingrese un opcion</small>
+                    </div>
+
+                    <div>
+                    <label for="birthday">Fecha de nacimiento:</label>
+                        <input type="date" id="fecha" name="fecha" min="1950-01-01" max="2022-12-31" value={fecha} onChange={this.CambioValor} className={ ((this.verificarError("error_genero"))?"is-invalid":"" )+" form-control" } ></input>
+                        <small className="invalid-feedback">Ingrese un opcion</small>
+                        </div>
 
                     <div className="btn-group" role="group" aria-label="">
                         <button type="submit" className="btn btn-success">Finalizar</button>
                         <Link to={"/sistema"} type="button" className="btn btn-danger">Cancelar</Link>
-
                     </div>
                     
+                
+                    
                 </form>
-            </div>
-            <div className="card-footer text-muted">
             </div>
         </div> );
     }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 03-10-2022 a las 00:22:08
+-- Tiempo de generación: 03-10-2022 a las 08:29:12
 -- Versión del servidor: 10.4.25-MariaDB
 -- Versión de PHP: 8.1.10
 
@@ -30,15 +30,11 @@ SET time_zone = "+00:00";
 CREATE TABLE `empleados` (
   `id` int(11) NOT NULL,
   `nombre` varchar(255) NOT NULL,
-  `correo` varchar(255) NOT NULL
+  `correo` varchar(255) NOT NULL,
+  `carrera` varchar(255) NOT NULL,
+  `genero` varchar(11) NOT NULL,
+  `fecha` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `empleados`
---
-
-INSERT INTO `empleados` (`id`, `nombre`, `correo`) VALUES
-(39, 'dsadasd', 'fhermin_alex@hotmail.com');
 
 --
 -- Índices para tablas volcadas
@@ -58,7 +54,7 @@ ALTER TABLE `empleados`
 -- AUTO_INCREMENT de la tabla `empleados`
 --
 ALTER TABLE `empleados`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

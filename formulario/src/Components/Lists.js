@@ -55,6 +55,9 @@ componentDidMount(){
                     <th>ID</th>
                     <th>Nombre</th>
                     <th>Correo</th>
+                    <th>Carrera</th>
+                    <th>Genero</th>
+                    <th>Fecha</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -65,6 +68,9 @@ componentDidMount(){
                         <td>{usuarios.id}</td>
                         <td>{usuarios.nombre}</td>
                         <td>{usuarios.correo}</td>
+                        <td>{usuarios.carrera}</td>
+                        <td>{usuarios.genero}</td>
+                        <td>{usuarios.fecha}</td>
                         <td>
                             <div class="btn-group" role="group" aria-label="">  
                                 <button type='button' class="btn btn-danger"
